@@ -1,6 +1,5 @@
 package com.todo.exmaple.model
 
-import org.jetbrains.exposed.dao.IntIdTable
 import org.jetbrains.exposed.sql.Column
 import org.jetbrains.exposed.sql.Table
 
@@ -11,5 +10,10 @@ object Todos: Table() {
 
 data class Todo (
     val id: Int,
+    val task: String
+)
+
+data class NewTodo (
+    val id: Int?,
     val task: String
 )
