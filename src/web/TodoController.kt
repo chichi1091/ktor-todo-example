@@ -22,7 +22,7 @@ fun Route.todos(todoService: TodoService) {
             else call.respond(widget)
         }
 
-        post("/{id}") {
+        post("/") {
             val newTodo = call.receive<NewTodo>()
             call.respond(HttpStatusCode.Created, todoService.addTodo(newTodo))
         }
