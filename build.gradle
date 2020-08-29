@@ -20,6 +20,18 @@ group 'com.todo.exmaple'
 version '0.0.1'
 mainClassName = "io.ktor.server.tomcat.EngineMain"
 
+task fatJar(type: Jar) {
+    manifest {
+        attributes "Implementation-Title": project.name,
+                "Implementation-Version": version,
+                "Main-Class": mainClassName
+    }
+    baseName = project.name
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    exclude "META-INF/*.RSA", "META-INF/*.SF", "META-INF/*.DSA"
+    with jar
+}
+
 sourceSets {
     main.kotlin.srcDirs = main.java.srcDirs = ['src']
     test.kotlin.srcDirs = test.java.srcDirs = ['test']
@@ -47,9 +59,13 @@ dependencies {
     testImplementation "io.ktor:ktor-server-tests:$ktor_version"
 }
 
+ENV = System.getenv()
+DATABASE_URL = ENV['DATABASE_URL'] == null ? "jdbc:postgresql://localhost:5432/todo" : ENV['DATABASE_URL']
+DATABASE_USER = ENV['DATABASE_USER'] == null ? "ktoruser" : ENV['DATABASE_USER']
+DATABASE_PASSWORD = ENV['DATABASE_PASSWORD'] == null ? "ktorpass" : ENV['DATABASE_PASSWORD']
 
 flyway {
-    url = "jdbc:postgresql://localhost:5432/todo"
+    url = DATABASE_URL
     user = "ktoruser"
     password = "ktorpass"
     baselineOnMigrate=true
