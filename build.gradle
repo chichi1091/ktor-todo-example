@@ -62,12 +62,12 @@ dependencies {
     testImplementation "io.ktor:ktor-server-tests:$ktor_version"
 }
 
-def DATABASE_URL = System.getenv()['DATABASE_URL'] == null ? "jdbc:postgresql://localhost:5432/todo" : System.getenv()['DATABASE_URL']
+def DATABASE_JDBC = System.getenv()['DATABASE_JDBC'] == null ? "jdbc:postgresql://localhost:5432/todo" : System.getenv()['DATABASE_JDBC']
 def DATABASE_USER = System.getenv()['DATABASE_USER'] == null ? "ktoruser" : System.getenv()['DATABASE_USER']
 def DATABASE_PASSWORD = System.getenv()['DATABASE_PASSWORD'] == null ? "ktorpass" : System.getenv()['DATABASE_PASSWORD']
 
 flyway {
-    url = DATABASE_URL
+    url = DATABASE_JDBC
     user = DATABASE_USER
     password = DATABASE_PASSWORD
     baselineOnMigrate=true
