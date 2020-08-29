@@ -62,7 +62,7 @@ dependencies {
     testImplementation "io.ktor:ktor-server-tests:$ktor_version"
 }
 
-def JDBC_DATABASE_URL = System.getenv()['JDBC_DATABASE_URL'] == null ? "jdbc:postgresql://localhost:5432/todo" : System.getenv()['JDBC_DATABASE_URL']
+def JDBC_DATABASE_URL = System.getenv()['JDBC'] == null ? "jdbc:postgresql://localhost:5432/todo" : System.getenv()['JDBC']
 def JDBC_DATABASE_USERNAME = System.getenv()['JDBC_DATABASE_USERNAME'] == null ? "ktoruser" : System.getenv()['JDBC_DATABASE_USERNAME']
 def JDBC_DATABASE_PASSWORD = System.getenv()['JDBC_DATABASE_PASSWORD'] == null ? "ktorpass" : System.getenv()['JDBC_DATABASE_PASSWORD']
 
