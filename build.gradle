@@ -22,7 +22,12 @@ mainClassName = "io.ktor.server.tomcat.EngineMain"
 
 jar {
     manifest {
-        attributes 'Main-Class': mainClassName
+        attributes 'Main-Class': "com.todo.exmaple.ApplicationKt"
+    }
+    from {
+        configurations.compile.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
     }
 }
 
@@ -43,21 +48,21 @@ repositories {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-    implementation "io.ktor:ktor-server-tomcat:$ktor_version"
-    implementation "ch.qos.logback:logback-classic:$logback_version"
-    implementation "io.ktor:ktor-jackson:$ktor_version"
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    compile "io.ktor:ktor-server-tomcat:$ktor_version"
+    compile "ch.qos.logback:logback-classic:$logback_version"
+    compile "io.ktor:ktor-jackson:$ktor_version"
 
-    implementation "org.jetbrains.exposed:exposed:0.17.7"
-    implementation 'com.zaxxer:HikariCP:3.4.5'
-    implementation "org.postgresql:postgresql:42.2.14"
+    compile "org.jetbrains.exposed:exposed:0.17.7"
+    compile 'com.zaxxer:HikariCP:3.4.5'
+    compile "org.postgresql:postgresql:42.2.14"
 
-    implementation 'org.flywaydb:flyway-core:6.5.3'
+    compile 'org.flywaydb:flyway-core:6.5.3'
 
-    testImplementation "io.ktor:ktor-server-tests:$ktor_version"
+    testCompile "io.ktor:ktor-server-tests:$ktor_version"
 }
 
-def JDBC_DATABASE_URL = System.getenv()['JDBC'] == null ? "jdbc:postgresql://localhost:5432/todo" : System.getenv()['JDBC']
+def JDBC_DATABASE_URL = System.getenv()['JDBC_DATABASE_URL'] == null ? "jdbc:postgresql://localhost:5432/todo" : System.getenv()['JDBC_DATABASE_URL']
 def JDBC_DATABASE_USERNAME = System.getenv()['JDBC_DATABASE_USERNAME'] == null ? "ktoruser" : System.getenv()['JDBC_DATABASE_USERNAME']
 def JDBC_DATABASE_PASSWORD = System.getenv()['JDBC_DATABASE_PASSWORD'] == null ? "ktorpass" : System.getenv()['JDBC_DATABASE_PASSWORD']
 
