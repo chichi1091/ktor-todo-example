@@ -16,9 +16,14 @@ object DatabaseFactory {
     private val dbPassword = appConfig.property("db.dbPassword").getString()
 
     fun init() {
-        Database.connect(hikari())
-        val flyway = Flyway.configure().dataSource(dbUrl, dbUser, dbPassword).load()
-        flyway.migrate()
+        try {
+            Database.connect(hikari())
+            val flyway = Flyway.configure().dataSource(dbUrl, dbUser, dbPassword).load()
+            flyway.migrate()
+        } catch (ex: Exception) {
+            println(ex.message)
+            ex.printStackTrace()
+        }
     }
 
     private fun hikari(): HikariDataSource {
