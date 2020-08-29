@@ -20,17 +20,20 @@ group 'com.todo.exmaple'
 version '0.0.1'
 mainClassName = "io.ktor.server.tomcat.EngineMain"
 
-task fatJar(type: Jar) {
-    manifest {
-        attributes "Implementation-Title": project.name,
-                "Implementation-Version": version,
-                "Main-Class": mainClassName
-    }
-    baseName = project.name
-    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
-    exclude "META-INF/*.RSA", "META-INF/*.SF", "META-INF/*.DSA"
-    with jar
-}
+// task fatJar(type: Jar) {
+//     manifest {
+//         attributes "Implementation-Title": project.name,
+//                 "Implementation-Version": version,
+//                 "Main-Class": mainClassName
+//     }
+//     baseName = project.name
+//     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+//     exclude "META-INF/*.RSA", "META-INF/*.SF", "META-INF/*.DSA"
+//     with jar
+// }
+task stage {  
+    dependsOn installDist  
+} 
 
 sourceSets {
     main.kotlin.srcDirs = main.java.srcDirs = ['src']
