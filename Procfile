@@ -1,0 +1,1 @@
+web:    java -jar build/libs/todo-api-0.0.1.jar
