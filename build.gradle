@@ -66,6 +66,10 @@ def JDBC_DATABASE_URL = System.getenv()['JDBC_DATABASE_URL'] == null ? "jdbc:pos
 def JDBC_DATABASE_USERNAME = System.getenv()['JDBC_DATABASE_USERNAME'] == null ? "ktoruser" : System.getenv()['JDBC_DATABASE_USERNAME']
 def JDBC_DATABASE_PASSWORD = System.getenv()['JDBC_DATABASE_PASSWORD'] == null ? "ktorpass" : System.getenv()['JDBC_DATABASE_PASSWORD']
 
+System.out.println(JDBC_DATABASE_URL)
+System.out.println(JDBC_DATABASE_USERNAME)
+System.out.println(JDBC_DATABASE_PASSWORD)
+
 flyway {
     url = JDBC_DATABASE_URL
     user = JDBC_DATABASE_USERNAME
