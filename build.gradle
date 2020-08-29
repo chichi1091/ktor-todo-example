@@ -59,15 +59,14 @@ dependencies {
     testImplementation "io.ktor:ktor-server-tests:$ktor_version"
 }
 
-ENV = System.getenv()
-DATABASE_URL = ENV['DATABASE_URL'] == null ? "jdbc:postgresql://localhost:5432/todo" : ENV['DATABASE_URL']
-DATABASE_USER = ENV['DATABASE_USER'] == null ? "ktoruser" : ENV['DATABASE_USER']
-DATABASE_PASSWORD = ENV['DATABASE_PASSWORD'] == null ? "ktorpass" : ENV['DATABASE_PASSWORD']
+DATABASE_URL = System.getenv['DATABASE_URL'] == null ? "jdbc:postgresql://localhost:5432/todo" : System.getenv['DATABASE_URL']
+DATABASE_USER = System.getenv['DATABASE_USER'] == null ? "ktoruser" : System.getenv['DATABASE_USER']
+DATABASE_PASSWORD = System.getenv['DATABASE_PASSWORD'] == null ? "ktorpass" : System.getenv['DATABASE_PASSWORD']
 
 flyway {
     url = DATABASE_URL
-    user = "ktoruser"
-    password = "ktorpass"
+    user = DATABASE_USER
+    password = DATABASE_PASSWORD
     baselineOnMigrate=true
     locations = ["filesystem:resources/db/migration"]
 }
