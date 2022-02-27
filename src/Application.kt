@@ -2,23 +2,17 @@ package com.todo.exmaple
 
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.todo.exmaple.factory.DatabaseFactory
-import com.todo.exmaple.model.Todos
 import com.todo.exmaple.service.TodoService
 import com.todo.exmaple.web.todos
 import io.ktor.application.*
-import io.ktor.features.ContentNegotiation
-import io.ktor.http.ContentType
-import io.ktor.jackson.jackson
-import io.ktor.response.*
-import io.ktor.request.*
-import io.ktor.routing.Routing
-import io.ktor.routing.get
-import io.ktor.routing.routing
+import io.ktor.features.*
+import io.ktor.jackson.*
+import io.ktor.routing.*
 
 fun main(args: Array<String>): Unit = io.ktor.server.tomcat.EngineMain.main(args)
 
 @Suppress("unused") // Referenced in application.conf
-@kotlin.jvm.JvmOverloads
+@JvmOverloads
 fun Application.module(testing: Boolean = false) {
 
     install(ContentNegotiation) {

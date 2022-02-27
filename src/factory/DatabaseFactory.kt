@@ -3,8 +3,7 @@ package com.todo.exmaple.factory
 import com.typesafe.config.ConfigFactory
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
-import io.ktor.config.HoconApplicationConfig
-import io.ktor.util.KtorExperimentalAPI
+import io.ktor.config.*
 import org.flywaydb.core.Flyway
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.transactions.experimental.newSuspendedTransaction

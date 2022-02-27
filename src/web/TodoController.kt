@@ -2,10 +2,10 @@ package com.todo.exmaple.web
 
 import com.todo.exmaple.model.NewTodo
 import com.todo.exmaple.service.TodoService
-import io.ktor.application.call
-import io.ktor.http.HttpStatusCode
-import io.ktor.request.receive
-import io.ktor.response.respond
+import io.ktor.application.*
+import io.ktor.http.*
+import io.ktor.request.*
+import io.ktor.response.*
 import io.ktor.routing.*
 
 fun Route.todos(todoService: TodoService) {
