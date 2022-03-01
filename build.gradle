@@ -53,11 +53,11 @@ dependencies {
     compile "ch.qos.logback:logback-classic:$logback_version"
     compile "io.ktor:ktor-jackson:$ktor_version"
 
-    compile "org.jetbrains.exposed:exposed:0.17.7"
-    compile 'com.zaxxer:HikariCP:3.4.5'
-    compile "org.postgresql:postgresql:42.2.14"
+    compile "org.jetbrains.exposed:exposed:0.17.14"
+    compile 'com.zaxxer:HikariCP:5.0.1'
+    compile "org.postgresql:postgresql:42.3.3"
 
-    compile 'org.flywaydb:flyway-core:6.5.3'
+    compile 'org.flywaydb:flyway-core:8.5.1'
 
     testCompile "io.ktor:ktor-server-tests:$ktor_version"
 }
